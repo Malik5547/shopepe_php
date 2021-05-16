@@ -9,23 +9,25 @@ class DBController{
     protected $database = 'shopepe';
 
     // connection property
-    protected $con = null;
+    public $con = null;
 
-    // call contstructor
-    public function __construct(){
+    // call constructor
+    public function __construct()
+    {
         $this->con = mysqli_connect($this->host, $this->user, $this->password, $this->database);
-        if($this->con->connect_error){
-            echo "Fail".$this->con->connect_error;
+        if ($this->con->connect_error){
+            echo "Fail " . $this->con->connect_error;
         }
     }
 
-    public function __destruct(){
+    public function __destruct()
+    {
         $this->closeConnection();
     }
 
-    // for mysql clossing connection
+    // for mysqli closing connection
     protected function closeConnection(){
-        if($this->con != null){
+        if ($this->con != null ){
             $this->con->close();
             $this->con = null;
         }
