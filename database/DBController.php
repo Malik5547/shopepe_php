@@ -19,6 +19,18 @@ class DBController{
         }
     }
 
+    public function __destruct(){
+        $this->closeConnection();
+    }
+
+    // for mysql clossing connection
+    protected function closeConnection(){
+        if($this->con != null){
+            $this->con->close();
+            $this->con = null;
+        }
+    }
+
 }
 
 ?>
