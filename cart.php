@@ -6,13 +6,13 @@
 
 <?php
 
-    /* include cart template */
-      include("template/_cart.php");
-    /* include cart template */
+    /* include cart items if it is not empty */
+    count($product->getData('cart')) ? include("template/_cart.php") : include("template/notFound/_cart_notFound.php");
+    /* include cart items if it is not empty */
 
-    /* include wishlist template */
-    include("template/_wishlist_template.php");
-    /* include wishlist template */
+    /* include wishlist items if it is not empty */
+    count($product->getData('wishlist')) ? include("template/_wishlist.php") : include("template/notFound/_wishlist_notFound.php");
+    /* include wishlist items if it is not empty */
 
     /* include new phones */
         include("template/_new_phones.php");
