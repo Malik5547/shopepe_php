@@ -5,7 +5,13 @@
         if(isset($_POST['delete_cart_submit'])){
             $deletedrecord = $Cart->deleteCart($_POST['item_id']);
         }
+
+        
+        if(isset($_POST['cart-submit'])){
+            $Cart->saveForLater($_POST['item_id'], 'cart', 'wishlist');
+        }
     }
+
 ?>
 
 <section id="cart" class="py-3 mb-5">
@@ -15,9 +21,9 @@
                 <div class="row">
                     <div class="col-sm-9">
                         <?php
-                            foreach($product->getData('cart') as $item):
+                            foreach ($product->getData('wishlist') as $item) :
                                 $cart = $product->getProduct($item['item_id']);
-                                $subTotal[] = array_map(function($item){
+                                $subTotal[] = array_map(function ($item){
                         ?>
                         <!-- cart item -->
                             <div class="row border-top py-3 mt-3">
@@ -47,7 +53,11 @@
                                                 <button type="submit" name="delete_cart_submit" class="btn font-baloo text-danger pl-0 pr-3 border-right">Delete</button>
                                             </form>
 
-                                            <button type="submit" class="btn font-baloo text-danger">Add to cart</button>
+                                            <form method="post">
+                                                <input type="hidden" value="<?php echo $item['item_id'] ?? 0; ?>" name="item_id">
+                                                <button type="submit" name="cart-submit" class="btn font-baloo text-danger">Add to cart</button>
+                                            </form>
+
                                         </div>
                                     <!-- !product qty -->
                                 </div>

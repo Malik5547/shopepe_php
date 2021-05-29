@@ -11,7 +11,7 @@ class Product{
 
     // fetch product data using getData Method
     public function getData($table = 'product'){
-        $result = $this->db->con->query("SELECT * FROM {$table}");
+        $result = $this->db->con->query("SELECT * FROM `{$table}`") or trigger_error(mysql_error()." ".'SELECT * FROM `{$table}');
 
         $resultArray = array();
 

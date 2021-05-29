@@ -76,6 +76,23 @@ class Cart{
         }
     }
 
+    // Save for later
+    public function saveForLater($item_id = null, $saveTable = "wishlist", $fromTable = "cart"){
+        if ($item_id != null){
+            $query1 = "INSERT INTO {$saveTable} SELECT * FROM {$fromTable} WHERE item_id={$item_id};";
+            $query2 = "DELETE FROM {$fromTable} WHERE item_id={$item_id}";
+
+            // execute multiple query
+            $result1 = $this->db->con->multi_query($query1);
+            $result2 = $this->db->con->multi_query($query2);
+
+            if($result1 && $result2){
+                header("Location:" . $_SERVER['PHP_SELF']);
+            }
+            return $result2;
+        }
+    }   
+    
 }
 
 ?>
