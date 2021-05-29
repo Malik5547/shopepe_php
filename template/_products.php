@@ -17,7 +17,13 @@
                             <button type="submit" class="btn btn-danger form-control">Proceed to Buy</button>
                         </div>
                         <div class="col">
-                            <button type="submit" class="btn btn-warning form-control">Add to Cart</button>
+                            <?php
+                            if(in_array($item['item_id'], $Cart->getCartId($product->getData('cart')) ?? [])){ 
+                              echo '<button type="submit" disabled class="btn btn-success form-control">In the Cart</button>';
+                            } else{
+                              echo '<button type="submit" class="btn btn-warning form-control">Add to Cart</button>';
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
