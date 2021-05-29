@@ -6,9 +6,13 @@
 
 <?php
 
-    /* include cart */
+    /* include cart template */
       include("template/_cart.php");
-    /* include cart */
+    /* include cart template */
+
+    /* include wishlist template */
+    include("template/_wishlist_template.php");
+    /* include wishlist template */
 
     /* include new phones */
         include("template/_new_phones.php");
